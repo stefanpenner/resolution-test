@@ -1,14 +1,10 @@
 name: 'L4-01'
-description: 'Layer 4 composite 01'
+description: 'Layer 4 composite 01 (cross-repo)'
 runs:
   using: 'composite'
   steps:
-    - uses: stefanpenner/resolution-test/leaf-02@main
+    - uses: stefanpenner/resolution-shard-2/leaf-a@main
+    - uses: stefanpenner/resolution-shard-4/leaf-b@main
+    - uses: stefanpenner/resolution-test/leaf-01@main
       with:
-        tag: 'L4-01 → leaf-02'
-    - uses: stefanpenner/resolution-test/leaf-04@main
-      with:
-        tag: 'L4-01 → leaf-04'
-    - uses: stefanpenner/resolution-test/leaf-07@main
-      with:
-        tag: 'L4-01 → leaf-07'
+        tag: 'L4-01 → leaf-01'

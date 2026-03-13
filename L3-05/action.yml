@@ -1,13 +1,11 @@
 name: 'L3-05'
-description: 'Layer 3 composite 05'
+description: 'Layer 3 composite 05 (cross-repo)'
 runs:
   using: 'composite'
   steps:
-    - uses: stefanpenner/resolution-test/leaf-06@main
+    - uses: stefanpenner/resolution-shard-1/leaf-a@main
+    - uses: stefanpenner/resolution-test/leaf-05@main
       with:
-        tag: 'L3-05 → leaf-06'
-    - uses: stefanpenner/resolution-test/leaf-09@main
-      with:
-        tag: 'L3-05 → leaf-09'
+        tag: 'L3-05 → leaf-05'
     - uses: stefanpenner/resolution-test/L4-07@main
     - uses: stefanpenner/resolution-test/L4-02@main
