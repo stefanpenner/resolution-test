@@ -6,12 +6,11 @@ on:
     branches: [main]
 
 jobs:
-  # Baseline: runs on stock runner (main branch, no batching)
-  # Expected: ~301 resolve API calls
   resolve-storm-main:
     runs-on: [self-hosted-main]
     steps:
       - uses: actions/checkout@v4
+      # 10 L1 composites (each fans into 3 shard repos + 1 L2)
       - uses: stefanpenner/resolution-test/L1-01@main
       - uses: stefanpenner/resolution-test/L1-02@main
       - uses: stefanpenner/resolution-test/L1-03@main
@@ -22,16 +21,15 @@ jobs:
       - uses: stefanpenner/resolution-test/L1-08@main
       - uses: stefanpenner/resolution-test/L1-09@main
       - uses: stefanpenner/resolution-test/L1-10@main
-      - uses: stefanpenner/resolution-test/leaf-01@main
-      - uses: stefanpenner/resolution-test/leaf-02@main
-      - uses: stefanpenner/resolution-test/leaf-03@main
-      - uses: stefanpenner/resolution-test/leaf-04@main
-      - uses: stefanpenner/resolution-test/leaf-05@main
-      - run: echo "Done (main runner - stock, ~301 resolve calls expected)"
+      # 5 shard composites at top level too
+      - uses: stefanpenner/resolution-shard-1/composite@main
+      - uses: stefanpenner/resolution-shard-3/composite@main
+      - uses: stefanpenner/resolution-shard-5/composite@main
+      - uses: stefanpenner/resolution-shard-7/composite@main
+      - uses: stefanpenner/resolution-shard-9/composite@main
+      - run: echo "Done (main runner)"
         shell: bash
 
-  # Optimized: runs on PR runner (batched + deduped resolution)
-  # Expected: ~4 resolve API calls
   resolve-storm-pr:
     runs-on: [self-hosted-pr]
     steps:
@@ -46,10 +44,10 @@ jobs:
       - uses: stefanpenner/resolution-test/L1-08@main
       - uses: stefanpenner/resolution-test/L1-09@main
       - uses: stefanpenner/resolution-test/L1-10@main
-      - uses: stefanpenner/resolution-test/leaf-01@main
-      - uses: stefanpenner/resolution-test/leaf-02@main
-      - uses: stefanpenner/resolution-test/leaf-03@main
-      - uses: stefanpenner/resolution-test/leaf-04@main
-      - uses: stefanpenner/resolution-test/leaf-05@main
-      - run: echo "Done (PR runner - batched, ~4 resolve calls expected)"
+      - uses: stefanpenner/resolution-shard-1/composite@main
+      - uses: stefanpenner/resolution-shard-3/composite@main
+      - uses: stefanpenner/resolution-shard-5/composite@main
+      - uses: stefanpenner/resolution-shard-7/composite@main
+      - uses: stefanpenner/resolution-shard-9/composite@main
+      - run: echo "Done (PR runner)"
         shell: bash

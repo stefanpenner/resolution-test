@@ -1,11 +1,9 @@
 name: 'L1-02'
-description: 'Layer 1 composite 02'
+description: 'Layer 1 composite - distributed across repos'
 runs:
   using: 'composite'
   steps:
-    - uses: stefanpenner/resolution-test/leaf-03@main
-      with:
-        tag: 'L1-02 → leaf-03'
-    - uses: stefanpenner/resolution-test/L2-03@main
-    - uses: stefanpenner/resolution-test/L2-07@main
-    - uses: stefanpenner/resolution-test/L2-10@main
+    - uses: stefanpenner/resolution-shard-3/composite@main
+    - uses: stefanpenner/resolution-shard-6/leaf@main
+    - uses: stefanpenner/resolution-shard-10/composite@main
+    - uses: stefanpenner/resolution-test/L2-02@main

@@ -1,10 +1,8 @@
 name: 'L4-02'
-description: 'Layer 4 composite 02 (cross-repo)'
+description: 'Layer 4 composite - distributed across repos'
 runs:
   using: 'composite'
   steps:
-    - uses: stefanpenner/resolution-shard-3/leaf-a@main
-    - uses: stefanpenner/resolution-shard-5/leaf-b@main
-    - uses: stefanpenner/resolution-test/leaf-02@main
-      with:
-        tag: 'L4-02 → leaf-02'
+    - uses: stefanpenner/resolution-shard-3/leaf@main
+    - uses: stefanpenner/resolution-shard-7/leaf@main
+    - uses: stefanpenner/resolution-shard-2/leaf@main
