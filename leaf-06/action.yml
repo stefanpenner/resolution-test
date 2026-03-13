@@ -1,0 +1,10 @@
+name: 'Leaf 06'
+description: 'Simple leaf action 06'
+inputs:
+  tag:
+    default: 'leaf-06'
+runs:
+  using: 'composite'
+  steps:
+    - run: 'echo "${{ inputs.tag }}"'
+      shell: bash

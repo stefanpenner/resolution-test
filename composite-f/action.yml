@@ -1,9 +1,0 @@
-name: 'Composite F'
-description: 'Depth-3 composite'
-runs:
-  using: 'composite'
-  steps:
-    - uses: stefanpenner/resolution-test/leaf-echo@main
-      with:
-        message: 'from composite-f (depth 3)'
-    - uses: stefanpenner/resolution-test/leaf-sleep@main

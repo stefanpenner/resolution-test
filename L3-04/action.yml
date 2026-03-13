@@ -1,0 +1,13 @@
+name: 'L3-04'
+description: 'Layer 3 composite 04'
+runs:
+  using: 'composite'
+  steps:
+    - uses: stefanpenner/resolution-test/leaf-05@main
+      with:
+        tag: 'L3-04 → leaf-05'
+    - uses: stefanpenner/resolution-test/leaf-08@main
+      with:
+        tag: 'L3-04 → leaf-08'
+    - uses: stefanpenner/resolution-test/L4-06@main
+    - uses: stefanpenner/resolution-test/L4-01@main

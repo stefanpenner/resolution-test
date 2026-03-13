@@ -1,0 +1,11 @@
+name: 'L1-09'
+description: 'Layer 1 composite 09'
+runs:
+  using: 'composite'
+  steps:
+    - uses: stefanpenner/resolution-test/leaf-10@main
+      with:
+        tag: 'L1-09 → leaf-10'
+    - uses: stefanpenner/resolution-test/L2-10@main
+    - uses: stefanpenner/resolution-test/L2-04@main
+    - uses: stefanpenner/resolution-test/L2-07@main

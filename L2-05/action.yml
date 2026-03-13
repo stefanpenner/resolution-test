@@ -1,0 +1,11 @@
+name: 'L2-05'
+description: 'Layer 2 composite 05'
+runs:
+  using: 'composite'
+  steps:
+    - uses: stefanpenner/resolution-test/leaf-06@main
+      with:
+        tag: 'L2-05 → leaf-06'
+    - uses: stefanpenner/resolution-test/L3-06@main
+    - uses: stefanpenner/resolution-test/L3-09@main
+    - uses: stefanpenner/resolution-test/L3-03@main
