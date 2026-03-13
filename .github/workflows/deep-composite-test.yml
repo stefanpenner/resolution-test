@@ -6,23 +6,44 @@ on:
     branches: [main]
 
 jobs:
-  resolve-storm:
-    runs-on: ubuntu-latest
+  # Baseline: runs on stock runner (main branch, no batching)
+  resolve-storm-main:
+    runs-on: [self-hosted-main]
     steps:
-      # 3 top-level composites + 1 leaf = depth 0 has 4 actions
-      # Each composite fans out into 2-3 sub-actions per depth level
-      # Total unique actions: 8 (leaf-echo, leaf-sleep, composite-a..f)
-      # Without batching/dedup: ~15-20 resolve API calls
-      # With PR #4296: ~3-4 resolve API calls
       - uses: actions/checkout@v4
-
       - uses: stefanpenner/resolution-test/leaf-echo@main
         with:
-          message: 'top-level leaf-echo'
-
+          message: 'top-level leaf-echo (main runner)'
       - uses: stefanpenner/resolution-test/composite-a@main
       - uses: stefanpenner/resolution-test/composite-b@main
       - uses: stefanpenner/resolution-test/composite-c@main
+      - run: echo "All composites resolved and executed successfully (main runner)"
+        shell: bash
 
-      - run: echo "All composites resolved and executed successfully"
+  # Optimized: runs on PR runner (batched resolution)
+  resolve-storm-pr:
+    runs-on: [self-hosted-pr]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: stefanpenner/resolution-test/leaf-echo@main
+        with:
+          message: 'top-level leaf-echo (PR runner)'
+      - uses: stefanpenner/resolution-test/composite-a@main
+      - uses: stefanpenner/resolution-test/composite-b@main
+      - uses: stefanpenner/resolution-test/composite-c@main
+      - run: echo "All composites resolved and executed successfully (PR runner)"
+        shell: bash
+
+  # Also keep a GitHub-hosted run for reference
+  resolve-storm-hosted:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: stefanpenner/resolution-test/leaf-echo@main
+        with:
+          message: 'top-level leaf-echo (hosted)'
+      - uses: stefanpenner/resolution-test/composite-a@main
+      - uses: stefanpenner/resolution-test/composite-b@main
+      - uses: stefanpenner/resolution-test/composite-c@main
+      - run: echo "All composites resolved and executed successfully (hosted)"
         shell: bash
