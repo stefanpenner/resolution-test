@@ -1,0 +1,28 @@
+name: Deep Composite Resolution Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  resolve-storm:
+    runs-on: ubuntu-latest
+    steps:
+      # 3 top-level composites + 1 leaf = depth 0 has 4 actions
+      # Each composite fans out into 2-3 sub-actions per depth level
+      # Total unique actions: 8 (leaf-echo, leaf-sleep, composite-a..f)
+      # Without batching/dedup: ~15-20 resolve API calls
+      # With PR #4296: ~3-4 resolve API calls
+      - uses: actions/checkout@v4
+
+      - uses: stefanpenner/resolution-test/leaf-echo@main
+        with:
+          message: 'top-level leaf-echo'
+
+      - uses: stefanpenner/resolution-test/composite-a@main
+      - uses: stefanpenner/resolution-test/composite-b@main
+      - uses: stefanpenner/resolution-test/composite-c@main
+
+      - run: echo "All composites resolved and executed successfully"
+        shell: bash

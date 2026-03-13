@@ -1,0 +1,10 @@
+name: 'Composite E'
+description: 'Depth-2 composite'
+runs:
+  using: 'composite'
+  steps:
+    - uses: stefanpenner/resolution-test/leaf-echo@main
+      with:
+        message: 'from composite-e (depth 2)'
+    - uses: stefanpenner/resolution-test/leaf-sleep@main
+    - uses: stefanpenner/resolution-test/composite-f@main

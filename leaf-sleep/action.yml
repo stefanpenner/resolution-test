@@ -1,0 +1,7 @@
+name: 'Leaf Sleep'
+description: 'Trivial action that sleeps briefly'
+runs:
+  using: 'composite'
+  steps:
+    - run: echo "leaf-sleep start" && echo "leaf-sleep done"
+      shell: bash
