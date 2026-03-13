@@ -3,6 +3,6 @@ runs:
   using: 'composite'
   steps:
     - uses: stefanpenner/resolution-shard-12/leaf@main
-    - uses: stefanpenner/resolution-shard-14/leaf@main
-    - uses: stefanpenner/resolution-shard-11/leaf@main
     - uses: stefanpenner/resolution-test/L3-02@main
+    - uses: stefanpenner/resolution-test/L3-06@main
+    - uses: stefanpenner/resolution-test/L3-10@main
