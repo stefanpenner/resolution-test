@@ -1,9 +1,8 @@
 name: 'L2-03'
-description: 'Layer 2 composite - distributed across repos'
 runs:
   using: 'composite'
   steps:
-    - uses: stefanpenner/resolution-shard-5/leaf@main
-    - uses: stefanpenner/resolution-shard-9/composite@main
-    - uses: stefanpenner/resolution-shard-2/leaf@main
+    - uses: stefanpenner/resolution-shard-13/leaf@main
+    - uses: stefanpenner/resolution-shard-15/leaf@main
+    - uses: stefanpenner/resolution-shard-12/leaf@main
     - uses: stefanpenner/resolution-test/L3-03@main

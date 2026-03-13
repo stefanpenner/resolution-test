@@ -10,7 +10,11 @@ jobs:
     runs-on: [self-hosted-main]
     steps:
       - uses: actions/checkout@v4
-      # 10 L1 composites (each fans into 3 shard repos + 1 L2)
+      - uses: stefanpenner/resolution-shard-1/leaf@main
+      - uses: stefanpenner/resolution-shard-2/leaf@main
+      - uses: stefanpenner/resolution-shard-3/leaf@main
+      - uses: stefanpenner/resolution-shard-4/leaf@main
+      - uses: stefanpenner/resolution-shard-5/leaf@main
       - uses: stefanpenner/resolution-test/L1-01@main
       - uses: stefanpenner/resolution-test/L1-02@main
       - uses: stefanpenner/resolution-test/L1-03@main
@@ -21,19 +25,18 @@ jobs:
       - uses: stefanpenner/resolution-test/L1-08@main
       - uses: stefanpenner/resolution-test/L1-09@main
       - uses: stefanpenner/resolution-test/L1-10@main
-      # 5 shard composites at top level too
-      - uses: stefanpenner/resolution-shard-1/composite@main
-      - uses: stefanpenner/resolution-shard-3/composite@main
-      - uses: stefanpenner/resolution-shard-5/composite@main
-      - uses: stefanpenner/resolution-shard-7/composite@main
-      - uses: stefanpenner/resolution-shard-9/composite@main
-      - run: echo "Done (main runner)"
+      - run: echo "Done (main)"
         shell: bash
 
   resolve-storm-pr:
     runs-on: [self-hosted-pr]
     steps:
       - uses: actions/checkout@v4
+      - uses: stefanpenner/resolution-shard-1/leaf@main
+      - uses: stefanpenner/resolution-shard-2/leaf@main
+      - uses: stefanpenner/resolution-shard-3/leaf@main
+      - uses: stefanpenner/resolution-shard-4/leaf@main
+      - uses: stefanpenner/resolution-shard-5/leaf@main
       - uses: stefanpenner/resolution-test/L1-01@main
       - uses: stefanpenner/resolution-test/L1-02@main
       - uses: stefanpenner/resolution-test/L1-03@main
@@ -44,10 +47,5 @@ jobs:
       - uses: stefanpenner/resolution-test/L1-08@main
       - uses: stefanpenner/resolution-test/L1-09@main
       - uses: stefanpenner/resolution-test/L1-10@main
-      - uses: stefanpenner/resolution-shard-1/composite@main
-      - uses: stefanpenner/resolution-shard-3/composite@main
-      - uses: stefanpenner/resolution-shard-5/composite@main
-      - uses: stefanpenner/resolution-shard-7/composite@main
-      - uses: stefanpenner/resolution-shard-9/composite@main
-      - run: echo "Done (PR runner)"
+      - run: echo "Done (PR)"
         shell: bash

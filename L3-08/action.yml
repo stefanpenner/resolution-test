@@ -1,8 +1,8 @@
 name: 'L3-08'
-description: 'Layer 3 composite - distributed across repos'
 runs:
   using: 'composite'
   steps:
-    - uses: stefanpenner/resolution-shard-1/leaf@main
-    - uses: stefanpenner/resolution-shard-5/composite@main
+    - uses: stefanpenner/resolution-shard-18/leaf@main
+    - uses: stefanpenner/resolution-shard-20/leaf@main
+    - uses: stefanpenner/resolution-shard-17/leaf@main
     - uses: stefanpenner/resolution-test/L4-08@main
